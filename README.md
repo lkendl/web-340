@@ -1,2 +1,4 @@
-# web-340
-A repository for WEB340-346A Node.js
+# WEB 340 Node.js
+## Contributors
+* Professor Richard Krasso
+* Laura Kendl
