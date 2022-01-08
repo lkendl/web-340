@@ -1,13 +1,13 @@
 /*
 ============================================
-; Title: Exercise 1.5
-; File Name: kendl-exercise-1.5.js
+; Title: Assignment 1.5
+; File Name: kendl-assignment-1.5.js
 ; Author: Professor Krasso
 ; Date: 7 January 2022
 ; Modified By: Laura Kendl
 ; Description: Demonstrates how to create a Node server.
 ; Resources:
-; Code provided by Professor Krasso in WEB340 Exercise 1.5 Outline (Blackboard)
+; Code provided by Professor Krasso in WEB340 Assignment 1.5 Outline (Blackboard)
 ===========================================
 */
 
