@@ -1,0 +1,8 @@
+{
+    "name": "routes",
+    "author": "Laura Kendl",
+    "private": true,
+    "dependencies": {
+        "express": "^4.17.2"
+    }
+}
