@@ -1,0 +1,10 @@
+{
+    "name": "advanced-routing",
+    "author": "Laura Kendl",
+    "private": true,
+    "dependencies": {
+        "ejs": "^3.1.6",
+        "express": "^4.17.2",
+        "morgan": "^1.10.0"
+    }
+}
