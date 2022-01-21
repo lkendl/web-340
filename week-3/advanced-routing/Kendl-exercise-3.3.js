@@ -1,7 +1,7 @@
 /*
 ============================================
 ; Title: Exercise 3.3
-; File Name: kendl-exercise-3.3.js
+; File Name: Kendl-exercise-3.3.js
 ; Author: Professor Krasso
 ; Date: 20 January 2022
 ; Modified By: Laura Kendl
