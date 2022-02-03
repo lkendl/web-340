@@ -1,0 +1,9 @@
+{
+    "name": "pug-template",
+    "author": "Laura Kendl",
+    "private": true,
+    "dependencies": {
+        "express": "^4.17.2",
+        "pug": "^3.0.2"
+    }
+}

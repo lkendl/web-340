@@ -1,0 +1,35 @@
+//-
+    ============================================
+    ; Title: Exercise 5.3
+    ; File Name: index.pug
+    ; Author: Professor Krasso 
+    ; Date: 3 February 2022
+    ; Modified By: Laura Kendl
+    ; Description: Demonstrates how to use Pug templates.
+    ; Resources:
+    ; Blackboard: Code provided by Professor Krasso in WEB340 Exercise 5.3 Outline
+    ; Stackoverflow: https://stackoverflow.com/questions/20492935/block-comments-in-pug-jade (Block Comments in Pug Jade)
+    ;===========================================
+
+html
+    head
+        title Exercise 5.3 Pug Template Example 
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css")
+    body 
+        nav.navbar.navbar-dark.bg-dark.navbar-expand-sm 
+            ul.navbar-nav 
+                li.nav-item 
+                    a.nav-link(href="#") Home 
+                li.nav-item 
+                    a.nav-link(href="#") About 
+                li.nav-item 
+                    a.nav-link(href="#") Contact Us 
+        br
+        br
+        div.container 
+            div.row
+                .col-md-12 
+                    h2 Exercise 5.3 - Pug Templates
+                    // The following line's expected outcome is the message value from Kendl-exercise-5.3.js.
+                    p.alert.alert-success= message 
+
