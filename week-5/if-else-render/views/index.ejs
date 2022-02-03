@@ -1,0 +1,41 @@
+<!--
+============================================
+; Title: Exercise 5.2
+; Author: Professor Krasso 
+; Date: 2 February 2022
+; Modified By: Laura Kendl
+; Description: Demonstrates how to use EJS templates.
+; Resources:
+; Blackboard: Code provided by Professor Krasso in WEB340 Exercise 5.2 Outline
+;===========================================
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>WEB 340 | Kendl Exercise 5.2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <div class="container">
+        <br /><br />
+
+        <h2>Dunder Mifflin Employees</h2>
+        
+<!-- Single 'if' statement that tests the lengths of the names array. If length of array is greater than 0, iterate over the array and output the names. -->
+        <% if(names.length > 0) { %>
+            <% for (var k = 0; k < names.length; k++) { %>
+                <div class="alert alert-success"><strong><%= names[k] %></strong></div>
+            <% } %>
+        <% } %>
+    </div>
+    
+
+  </body>
+</html>
