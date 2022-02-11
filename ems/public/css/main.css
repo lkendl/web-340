@@ -1,0 +1,316 @@
+/*
+============================================
+; Title: theme.css
+; Author: Professor Krasso 
+; Date: 10 February 2022
+; Modified By: Laura Kendl
+; Description: Demonstrates how to create CSS variables for website themes.
+; Resources:
+; Blackboard: Initial code provided by Professor Krasso in WEB330.
+===========================================
+*/
+
+body.default-theme {
+    --text-color: #591C27;
+    --background-color: #FFF;
+    --anchor-color: #591C27;
+
+
+    /* Primary: #E49D3C (maroon)*/
+    --header-background-color: #591C27; /* Primary */
+    --header-color: #FFF;
+    --footer-background-color: #591C27;
+    --footer-color: #FFF;
+
+    --heading-background-color: #591C27;
+    --heading-color: #FFF;
+    --heading-border-color: #591C27;
+
+    --h1-background-color: #591C27;
+    --h1-border-color: #591C27;
+  
+    --btn-background-color: #591C27;
+    --btn-color: #FFF;
+    --btn-hover-color: #FFF;
+    --btn-border-color: #591C27;
+
+    --nav-background-color: #FFF;
+    --nav-link-color: #591C27;
+
+    /* Warm: #D94B2B (orange) */
+
+    /* Accent #1: #BF1F49 (pink */
+    --anchor-hover-background-color: #BF1F49;
+    --anchor-hover-color: #FFF;
+    --anchor-color-hover: #BF1F49;
+    --btn-hover-background-color: #BF1F49;
+
+    /* Accent #2: #E49D3C */
+     
+    --card-background-color: #FFF;
+    --card-title-color: #D94B2B;
+   
+    --input-border-color: #CCC;
+    --table-header-background-color: #D94B2B;
+    --table-header-color: #FFF;
+    --table-border-color: #DDD;
+}
+
+body, html {
+    font-family: 'Raleway', Verdana, Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    height: 100%;
+}
+
+#bg {
+  /* The image used */
+  background-image: url("img/ems-hero.jpg");
+
+  /* Full height */
+  max-width: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+#icon-mode:hover {
+    cursor: pointer;
+}
+
+.container {
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+}
+
+.main {
+    padding-top: 110px;
+    padding-bottom: 65px;
+    background-color: var(--container-background-color);
+}
+
+#icon-text {
+    padding-left: 10px;
+}
+
+.pull-right {
+    float: right;
+}
+
+a {
+    color: var(--anchor-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--anchor-hover-color);
+    background: var(--anchor-hover-background-color);
+}
+
+.navbar {
+    background-color: rgba(255,255,255, 0.8);
+    width: 100%;
+    display: flex;
+    margin-top: -10px;
+    margin-left: -10px;
+    position: fixed;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;   
+}
+
+.navbar-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-item {
+    float: left;
+}
+
+.nav-link {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: auto;
+    margin-left: auto;
+    color: var(--nav-link-color);
+    text-align: center;
+    padding: 10px;
+    display: block;
+}
+
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    color: var(--heading-color);
+    background: var(--h1-background-color);
+    padding: 10px;
+    border: solid 1px var(--h1-border-color);
+}
+
+h2, h3, h4 {
+    color: var(--heading-color);
+    background: var(--heading-background-color);
+    padding: 10px;
+    border: solid 1px var(--heading-border-color);
+}
+
+h5 {
+    font-size: 1.2em;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    background: var(--card-background-color);
+}
+
+.card-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.75em;
+    color: var(--card-title-color);
+    font-weight: 600;
+}
+
+.card-content {
+    padding: 2px 16px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 15px 32px;
+    color: var(--btn-color);
+}
+
+.btn-primary {
+    background-color: var(--btn-background-color);
+    color: var(--btn-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover-background-color);
+    color: var(--btn-hover-color);
+}
+
+.input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.drop-down-menu {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+th {
+    padding-left: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-color);
+}
+
+th, td {
+    border: 1px solid var(--table-border-color);
+}
+
+tr:hover {
+    background: var(--table-hover-background-color);
+    color: var(--table-hover-color);
+    cursor: pointer;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+footer {
+    text-align: center;
+    background-color: var(--footer-background-color);
+    color: var(--footer-color);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    display: block;
+}
+
+.footer-link {
+    font-family: 'Roboto',  Verdana, Arial, sans-serif;
+    font-size: .70em;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: auto;
+    margin-left: auto;
+    color: var(--footer-color);
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+#copyright {
+    font-size: .60em;
+    padding-bottom: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    grid-gap: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+

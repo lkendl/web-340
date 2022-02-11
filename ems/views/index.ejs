@@ -1,0 +1,37 @@
+<!--
+============================================
+; Title: Assignment 5.4
+; File Name: index.ejs
+; Author: Professor Krasso 
+; Date: 3 February 2022
+; Modified By: Laura Kendl
+; Description: Demonstrates how to build EJS templates.
+; Resources:
+; Blackboard: Code provided by Professor Krasso in WEB340 Assignment 5.4 Outline
+; GitHub: https://github.com/buwebdev/web-340/blob/master/fms/views/index.ejs(Initial code provided by Professor Krasso in web-340/fms/views/index.ejs repository file)
+;===========================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ("header") %>
+  <%- include ("navbar") %>
+
+  <body class="default-theme">
+
+<div role="main" class="main text-center">
+
+ <h1>Welcome to the Employee Management System!</h1>
+ 
+ <div class="img-wrapper">
+   <img id="bg" src="img/ems-hero.jpg">
+ </div>
+
+</div>
+
+<%- include ("footer") %>
+<%- include ("scripts") %>
+
+</body>
+</html>

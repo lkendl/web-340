@@ -1,0 +1,53 @@
+<!--
+============================================
+; Title: Assignment 5.4
+; File Name: view.ejs
+; Author: Professor Krasso 
+; Date: 3 February 2022
+; Modified By: Laura Kendl
+; Description: Demonstrates how to build EJS templates.
+; Resources:
+; Blackboard: Code provided by Professor Krasso in WEB340 Assignment 5.4 Outline
+; GitHub: https://github.com/buwebdev/web-340/blob/master/fms/views/view.ejs (Code provided by Professor Krasso in web-340/fms/views/view.ejs repository file)
+;===========================================
+-->
+
+<!-- Read-only page with the selected employee’s details -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include ("header") %>
+  <%- include ("navbar") %>
+
+  <body class="default-theme">
+
+    <div role="main" class="main">
+      <br /><br />
+
+      <h2>Employee Details</h2>
+      <br />
+      <div>
+        <div class="form-group">
+          <label for="txtName">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="txtName"
+            readonly
+            value="<%= employee[0].name %>"
+            name="txtName"
+          />
+        </div>
+      </div>
+
+      <br /><br />
+
+      <a href="/">&larr; OK</a>
+    </div>
+
+    <%- include ("footer") %>
+    <%- include ("scripts") %>
+
+  </body>
+</html>
