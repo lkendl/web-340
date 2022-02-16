@@ -1,21 +1,37 @@
 /*
 ============================================
-; Title: Assignment 5.4
+; Title: Assignment 5.4 & 7.4
 ; File Name: app.js
 ; Author: Professor Krasso 
 ; Date: 3 February 2022
 ; Modified By: Laura Kendl
 ; Description: Demonstrates how to build EJS templates.
 ; Resources:
-; Blackboard: Code provided by Professor Krasso in WEB340 Assignment 5.4 Outline
+; Blackboard: Code provided by Professor Krasso in WEB340 Assignment 5.4 & 7.4 Outline
 ===========================================
 */
 
 // Require JavaScript libraries.
 var express = require("express");
 var http = require("http");
-var path = require("path"); // Helps JS find the directory where the views will be saved.
+var path = require("path");
 var logger = require("morgan");
+
+// Requires for Mongoose.
+var mongoose = require("mongoose");
+var Employee = require("./models/employee");
+
+// mLab connection.
+var mongoDB = "mongodb+srv://lkendl:admin@buwebdev-cluster-1.p8egd.mongodb.net/ems?retryWrites=true&w=majority";
+
+// Mongoose connection to MongoDB.
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error: "));
+db.once("open", function() {
+    console.log("Application connected to mLab MongoDB instance");
+});
 
 // Create Express application.
 var app = express();
@@ -33,6 +49,12 @@ app.set("views", path.resolve(__dirname, "views"));
 
 // Specify JS to use Morgan logger.
 app.use(logger("short"));
+
+// Employee model.
+var employee = new Employee({
+    firstName: "Dwight",
+    lastName: "Schrute"
+});
 
 // Define routes.
 app.get("/", function (request, response) {
