@@ -50,12 +50,6 @@ app.set("views", path.resolve(__dirname, "views"));
 // Specify JS to use Morgan logger.
 app.use(logger("short"));
 
-// Employee model.
-var employee = new Employee({
-    firstName: "Dwight",
-    lastName: "Schrute"
-});
-
 // Define routes.
 app.get("/", function (request, response) {
     response.render("index", {title: "WEB-340 | EMS"});
