@@ -16,6 +16,13 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var logger = require("morgan");
+var helmet = require("helmet");
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var csrf = require("csurf");
+
+// Set up csrf protection.
+var csrfProtection = csrf({cookie: true});
 
 // Requires for Mongoose.
 var mongoose = require("mongoose");
@@ -36,23 +43,38 @@ db.once("open", function() {
 // Create Express application.
 var app = express();
 
-// Static files.
+// Define static files.
 app.use(express.static("public"));
 app.use("/css", express.static(__dirname + "public/css"));
 app.use("/img", express.static(__dirname + "public/img"));
 
-// Tell JavaScript to use EJS as its view engine.
-app.set("view engine", "ejs");
-
-// Specify 'views' folder to resolve EJS templates.
-app.set("views", path.resolve(__dirname, "views"));
-
-// Specify JS to use Morgan logger.
+// Define use statements.
 app.use(logger("short"));
+
+app.use(helmet.xssFilter());
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(cookieParser());
+app.use(csrfProtection);
+app.use(function(request, response, next) {
+    var token = request.csrfToken();
+    response.cookie("XSRF-TOKEN", token);
+    response.locals.csrfToken =  token;
+    next();
+});
+
+// Define set statements.
+app.set("view engine", "ejs"); // Tells JavaScript to use EJS as its view engine.
+app.set("views", path.resolve(__dirname, "views")); // Specifies 'views' folder to resolve EJS templates.
 
 // Define routes.
 app.get("/", function (request, response) {
-    response.render("index", {title: "WEB-340 | EMS"});
+    response.render("index", {
+        title: "WEB-340 | EMS",
+        message: "XSS Prevention Example"
+    });
 });
 
 app.get("/new", function (request, response) {
@@ -63,7 +85,13 @@ app.get("/list", function (request, response) {
     response.render("list", {title: "EMS | Employee Records (Read-only)"});
 });
 
-// Start the server.
+// Define post statements.
+app.post("/process", function(request, response) {
+    console.log(request.body.txtName);
+    response.redirect("/");
+});
+
+// Create and start the Node server.
 http.createServer(app).listen(8080, function() {
     console.log("Application started on port 8080!");
 });
