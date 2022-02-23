@@ -1,47 +1,49 @@
 /*
 ============================================
-; Title: Assignment 5.4 & 7.4
-; File Name: app.js
+; Title: app.js
 ; Author: Professor Krasso 
-; Date: 3 February 2022
+; Date: 21 February 2022
 ; Modified By: Laura Kendl
 ; Description: Demonstrates how to build EJS templates.
 ; Resources:
-; Blackboard: Code provided by Professor Krasso in WEB340 Assignment 5.4 & 7.4 Outline
+; Blackboard: Code provided by Professor Krasso in WEB340 Assignment Outlines
 ===========================================
 */
 
 // Require JavaScript libraries.
-var express = require("express");
-var http = require("http");
-var path = require("path");
-var logger = require("morgan");
-var helmet = require("helmet");
-var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
-var csrf = require("csurf");
+const express = require("express");
+const http = require("http");
+const path = require("path");
+const logger = require("morgan");
+const helmet = require("helmet");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const csrf = require("csurf");
 
 // Set up csrf protection.
-var csrfProtection = csrf({cookie: true});
+const csrfProtection = csrf({cookie: true});
 
 // Requires for Mongoose.
-var mongoose = require("mongoose");
-var Employee = require("./models/employee");
+const mongoose = require("mongoose");
 
 // mLab connection.
-var mongoDB = "mongodb+srv://lkendl:admin@buwebdev-cluster-1.p8egd.mongodb.net/ems?retryWrites=true&w=majority";
+const mongoDB = "mongodb+srv://lkendl:admin@buwebdev-cluster-1.p8egd.mongodb.net/ems?retryWrites=true&w=majority";
 
 // Mongoose connection to MongoDB.
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
+const db = mongoose.connection;
+
 db.on("error", console.error.bind(console, "MongoDB connection error: "));
 db.once("open", function() {
     console.log("Application connected to mLab MongoDB instance");
 });
 
 // Create Express application.
-var app = express();
+let app = express();
+
+// Import Employee model.
+let Employee = require("./models/employee");
 
 // Define static files.
 app.use(express.static("public"));
@@ -85,10 +87,56 @@ app.get("/list", function (request, response) {
     response.render("list", {title: "EMS | Employee Records (Read-only)"});
 });
 
-// Define post statements.
+// Post statement for Mongoose save.
 app.post("/process", function(request, response) {
+    /* Code for Exercise 8.3.
     console.log(request.body.txtName);
     response.redirect("/");
+    */
+    if (!request.body.txtFirstName) {
+        response.status(400).send("Entries must have a first name");
+
+        return;
+    }
+
+    if (!request.body.txtLastName) {
+        response.status(400).send("Entries must have a last name");
+
+        return;
+    }
+
+    // Get the request's form data.
+    let employeeFirstName = request.body.txtFirstName;
+    console.log(employeeFirstName);
+    let employeeLastName = request.body.txtLastName;
+    console.log(employeeLastName);
+
+    // Create an employee model.
+    let employee = new Employee({
+        firstName: employeeFirstName,
+        lastName: employeeLastName
+    });
+
+    // Save.
+    employee.save(function (error) {
+        if (error) throw error;
+        console.log(employeeFirstName + " " + employeeLastName + " saved successfully!");
+    });
+
+    response.redirect("/");    
+
+});
+
+// Get statement for Mongoose find all [Ref A]. 
+app.get("/list", function(request, response) {
+    Employee.find({}, function(error, employees) {
+        if (error) throw error;
+     
+        response.render("list", {
+            title: "Employee List",
+            employees: employees
+        });
+    });
 });
 
 // Create and start the Node server.

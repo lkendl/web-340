@@ -14,17 +14,14 @@
 */
 
 // Require JavaScript libraries.
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 // Define the employeeSchema.
-var employeeSchema = new Schema({
+let EmployeeSchema = new Schema({
     firstName: {type: String, required: true},
-    lastName: {type: String, required: true}
+    lastName: {type: String, required: true},
 });
 
-// Define the employee model.
-var Employee = mongoose.model("Employee", employeeSchema);
-
 // Export the model so it is accessible to other JavaScript files.
-module.exports = Employee;
+module.exports = mongoose.model("Employee", EmployeeSchema);
