@@ -26,16 +26,19 @@
  
       <% if (employees.length) { %>
       <h2>-- Employee Listing --</h2>
+      
       <a href="/new">Add New</a>
-      <thead class="table table-hover">
+      <br /> <br />
+
+      <table class="table table-hover" id="employee-listing">
         <thead class="thead-dark">
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
           </tr>
         </thead>
-      </thead>
-      <tbody>
+    
+        <tbody>
         <% employees.forEach(function (entry) { %>
         <tr>
           <td><%= entry.firstName %></td>
