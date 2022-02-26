@@ -48,10 +48,10 @@ body.default-theme {
     /* Accent #2: #E49D3C */
      
     --card-background-color: #FFF;
-    --card-title-color: #D94B2B;
+    --card-title-color: #BF1F49;
    
     --input-border-color: #CCC;
-    --table-header-background-color: #D94B2B;
+    --table-header-background-color: #BF1F49;
     --table-header-color: #FFF;
     --table-border-color: #DDD;
 }
@@ -237,7 +237,7 @@ h5 {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 75%;
     margin-bottom: 30px;
 }
 
@@ -254,10 +254,21 @@ th, td {
     border: 1px solid var(--table-border-color);
 }
 
+td {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 tr:hover {
     background: var(--table-hover-background-color);
     color: var(--table-hover-color);
     cursor: pointer;
+}
+
+#employee-listing {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .column {
