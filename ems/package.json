@@ -2,6 +2,9 @@
     "name": "ems",
     "author": "Laura Kendl",
     "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
     "dependencies": {
         "body-parser": "^1.19.1",
         "cookie-parser": "^1.4.6",
