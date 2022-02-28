@@ -88,10 +88,30 @@ body, html {
 
 }
 
+.index {
+    padding-top: 110px;
+    padding-bottom: 65px;
+    background-color: var(--container-background-color);
+}
+
 .main {
     padding-top: 110px;
     padding-bottom: 65px;
     background-color: var(--container-background-color);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .main {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .main {
+        width: 50%;
+    }
 }
 
 #icon-text {
@@ -184,11 +204,12 @@ h5 {
     text-transform: uppercase;
     font-size: 1.75em;
     color: var(--card-title-color);
-    font-weight: 600;
+    
 }
 
-.card-content {
-    padding: 2px 16px;
+.card-body {
+    padding: 20px;
+    text-align: center;
 }
 
 .card:hover {
@@ -215,6 +236,11 @@ h5 {
 .btn-primary:hover {
     background-color: var(--btn-hover-background-color);
     color: var(--btn-hover-color);
+}
+
+#new-button-container {
+    text-align: right;
+    margin-top: 20px;
 }
 
 .input {

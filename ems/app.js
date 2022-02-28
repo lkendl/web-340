@@ -2,11 +2,13 @@
 ============================================
 ; Title: app.js
 ; Author: Professor Krasso 
-; Date: 21 February 2022
+; Date: 28 February 2022
 ; Modified By: Laura Kendl
 ; Description: Demonstrates how to build EJS templates.
 ; Resources:
 ; Blackboard: Code provided by Professor Krasso in WEB340 Assignment Outlines
+; [Ref A] Blackboard: Code provided by Professor Krasso in WEB340 Assignment 8.2 Outline.
+; [Ref B] Blackboard: Code provided by Professor Krasso in WEB340 Exercise 9.2 Outline.
 ===========================================
 */
 
@@ -51,6 +53,7 @@ const csrfProtection = csrf({cookie: true});
 // Create Express application.
 let app = express();
 
+
 /* 
   ----- STATIC ROUTES -----
 */
@@ -75,12 +78,14 @@ app.use(bodyParser.urlencoded({
 );
 app.use(cookieParser());
 app.use(csrfProtection);
+// Intercepts all incoming requests and adds a CSRF token to the response.
 app.use(function (request, response, next) {
     var token = request.csrfToken();
     response.cookie("XSRF-TOKEN", token);
     response.locals.csrfToken =  token;
     next();
 });
+
 
 /* 
   ----- EJS SPECIFICATION -----
@@ -89,23 +94,47 @@ app.use(function (request, response, next) {
 app.set("view engine", "ejs"); // Tells JavaScript to use EJS as its view engine.
 app.set("views", path.resolve(__dirname, "views")); // Specifies 'views' folder to resolve EJS templates.
 
+
 /* 
-  ----- ROUTES -----
+  ----- GET STATEMENTS -----
 */
+
+/**
+ * Description: Redirects users to the 'index' page.
+ * Type: HttpGet
+ * Request: n/a
+ * Response: index.ejs, Employee[]
+ * URL: localhost:8080
+ */
 app.get("/", function (request, response) {
-    response.render("index", {
-        title: "WEB-340 | EMS",
-        message: "XSS Prevention Example"
+    Employee.find({}, function(error, employees) {
+        if(error) {
+            console.log(error);
+            throw error;
+        } else {
+            console.log(employees);
+            response.render("index", {
+            title: "EMS | Home",
+            employees: employees
+            })
+        }
     });
 });
 
+/**
+ * Description: Redirects users to the 'new' page.
+ * Type: HttpGet
+ * Request: n/a
+ * Response: new.ejs
+ * URL: localhost:8080/new
+ */
 app.get("/new", function (request, response) {
     response.render("new", {
-        title: "EMS | Data Entry"
+        title: "EMS | New"
     });
 });
 
-// Get statement for Mongoose find all [Ref A]. 
+// Get statement for "Mongoose Find All" [Ref A]. 
 app.get("/list", function(request, response) {
     Employee.find({}, function(error, employees) {
         if (error) throw error;
@@ -117,7 +146,45 @@ app.get("/list", function(request, response) {
     });
 });
 
-// Post statement for Mongoose save.
+/**
+ * Description: Redirects users to the 'home' page'
+ * Type: HttpGet
+ * Request: queryName
+ * Response: view.ejs, Employee[] | index.ejs
+ * URL: localhost:8080/view/:queryName
+ */
+// Get statement for "Mongoose Find One" [Ref B].
+app.get("/view/:queryName", function (request, response) {
+    let queryName = request.params.queryName;
+    
+    Employee.find({'firstName': queryName}, function(error, employees) {
+        if (error) throw error;
+        console.log(employees);
+        if (employees.length > 0) {
+            response.render("view", {
+                title: "EMS | View",
+                employee: employees
+            })
+        }
+        else {
+            response.redirect("/list")
+        }
+    });
+});
+
+
+/* 
+  ----- POST STATEMENTS -----
+*/
+
+// POST FUNCTION START | Mongoose save. //
+/**
+ * Description: Processes a form submission.
+ * Type: HttpPost
+ * Request: txtFirstName, txtLastName
+ * Response: index.ejs
+ * URL: localhost:8080/process
+ */
 app.post("/process", function(request, response) {
     /* Code for Exercise 8.3.
     console.log(request.body.txtName);
@@ -129,7 +196,7 @@ app.post("/process", function(request, response) {
         return;
     }
 
-    // Get the request's form data.
+    // Retrieve the request's form data.
     let employeesFirstName = request.body.txtFirstName;
     console.log(employeesFirstName);
     let employeesLastName = request.body.txtLastName;
@@ -147,9 +214,10 @@ app.post("/process", function(request, response) {
         console.log(employeesFirstName + " " + employeesLastName + " saved successfully!");
     });
 
-    response.redirect("/");    
+    response.redirect("/list");    
 
-});
+}); // POST FUNCTION END | Mongoose save. //
+
 
 // Create and start the Node server.
 http.createServer(app).listen(8080, function() {

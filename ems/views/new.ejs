@@ -25,7 +25,6 @@
     <h1>EMS | Data Entry Page</h1>
 
     <div class="card">
-    <br /><br />
     <h2>Welcome to the Data Entry Page!</h2>
 
       <div class="card-body">
@@ -35,15 +34,15 @@
         <div class="form-group">
         <label for="txtFirstName">First Name:</label>
         <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" placeholder="First Name" required>
-        
+      
         <label for="txtLastName">Last Name:</label>
         <input type="text" class="form-control" id="txtLastName" name="txtLastName" placeholder="Last Name" required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="new-button-container">
         <!-- CSRF token here. -->
         <input name="_csrf" value="<%= csrfToken %>" type="hidden" />
-        <button type="submit" class="btn btn-secondary float-right">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
       </form>
